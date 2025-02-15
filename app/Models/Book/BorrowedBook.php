@@ -19,7 +19,8 @@ class BorrowedBook extends Model
         'user_id',
         'checkout_date',
         'expires_at',
-        'is_returned'
+        'is_returned',
+        'is_expired'
     ];
 
     public function book(): BelongsTo
