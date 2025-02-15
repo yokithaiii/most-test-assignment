@@ -17,10 +17,11 @@ class LibrarianFactory extends Factory
      */
     public function definition(): array
     {
+        $libraryId = Library::query()->inRandomOrder()->value('id') ?? Library::factory()->create()->id;
         return [
             'firstname' => fake()->firstName('female'),
             'lastname' => fake()->lastName('female'),
-            'library_id' => Library::query()->inRandomOrder()->value('id') ?? Library::factory()->create()->id,
+            'library_id' => $libraryId,
         ];
     }
 }
