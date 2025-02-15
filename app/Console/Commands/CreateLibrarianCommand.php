@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use App\Models\Library\Librarian;
 use App\Models\Library\Library;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class CreateLibrarianCommand extends Command
 {
@@ -29,6 +31,7 @@ class CreateLibrarianCommand extends Command
     {
         $firstname = $this->ask('Введите Имя библиотекаря:');
         $lastname = $this->ask('Введите Фамилию библиотекаря:');
+        $email = $this->ask('Введите Email библиотекаря:');
 
         $libraries = Library::query()->get();
         if ($libraries->isEmpty()) {
@@ -44,9 +47,12 @@ class CreateLibrarianCommand extends Command
         Librarian::query()->updateOrCreate([
             'firstname' => $firstname,
             'lastname' => $lastname,
-            'library_id' => $library->id
+            'library_id' => $library->id,
+            'email' => $email,
+            'password' => Hash::make('qweqweqwe'),
         ]);
 
         $this->info('Библиотекарь успешно создан и прикреплен к библиотеке ' . '"'. $library->name . '"');
+        $this->info('Пароль библиотекаря: qweqweqwe');
     }
 }

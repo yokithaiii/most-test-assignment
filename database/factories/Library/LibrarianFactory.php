@@ -22,6 +22,8 @@ class LibrarianFactory extends Factory
             'firstname' => fake()->firstName('female'),
             'lastname' => fake()->lastName('female'),
             'library_id' => $libraryId,
+            'email' => fake()->email(),
+            'password' => fake()->password()
         ];
     }
 }
