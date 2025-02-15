@@ -50,10 +50,4 @@ class AuthController extends Controller
         return $this->authService->logout($request);
     }
 
-    public function me(Request $request)
-    {
-        $user = $request->user();
-
-        return response()->json($user);
-    }
 }
